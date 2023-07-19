@@ -31,3 +31,4 @@ if st.button("Test"):
         output = model.predict(inputv)
         res = (output > 0.5)
     st.write(["toxic","severe toxic","obscene","threat","insult","identity hate"], res)
+    print(output)
