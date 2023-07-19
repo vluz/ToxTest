@@ -1,4 +1,4 @@
-**Note**: Due to the nature of toxic comments please cosider this project as explicit.
+***Note: Due to the nature of toxic comments please cosider this project as explicit.***
 
 # Toxic Comment Test
 ## Python script to train TF model and a streamlit app to use the model.
@@ -42,7 +42,7 @@ To train do:<br>
 python toxtrain.py
 ``` 
 
-To test do:
+To test using existing model do:
 ```
 stramlit run toxtest.py
 ```
