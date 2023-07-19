@@ -20,15 +20,6 @@ def load_vectorizer():
     return new_v
 
 
-@st.cache_resource
-def load_vocab():
-    vocab = {}
-    with open('vocab.txt', 'r') as f:
-        for line in f:
-            token, index = line.strip().split('\t')
-            vocab[token] = int(index)
-
-
 st.title("Toxic Comment Test")
 st.divider()
 model = load_model()
@@ -40,5 +31,3 @@ if st.button("Test"):
         output = model.predict(inputv)
         res = (output > 0.5)
     st.write(["toxic","severe toxic","obscene","threat","insult","identity hate"], res)
-
-
