@@ -34,7 +34,7 @@ cd ToxTest
 pip install -r requirements.txt
 ```
 Put `train.csv` into the `data` dir and/or     
-Put `toxmodel.keras` into the `model` dir.     
+Put `toxmodel.keras` and `vectorizer.pkl` into the `model` dir.     
 <br>
 
 To train do:<br>
