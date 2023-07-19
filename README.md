@@ -1,5 +1,6 @@
 # Toxic Comment Test
-## Python script to train TF model and a streamlit app to use the model.
+## Python script to train TF model and a     
+streamlit app to use the model.
 
 Data is from kaggle, the *Toxic Comment Classification Challenge*
 <br>
