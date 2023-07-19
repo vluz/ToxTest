@@ -13,7 +13,7 @@ https://www.kaggle.com/competitions/jigsaw-toxic-comment-classification-challeng
 
 To use pretrained model, please donload it from HuggingFace link:
 <br>
-https://huggingface.co/
+https://huggingface.co/vluz/toxmodel/tree/main
 
 Put `toxmodel.keras` and `vectorizer.pkl` into the `model` dir.
 
