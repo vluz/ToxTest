@@ -33,7 +33,8 @@ git clone https://github.com/vluz/ToxTest.git
 cd ToxTest
 pip install -r requirements.txt
 ```
-Put `train.csv` into the `data` dir and/or     
+Put `train.csv` into the `data` dir      
+<br>and/or<br>     
 Put `toxmodel.keras` and `vectorizer.pkl` into the `model` dir.     
 <br>
 
