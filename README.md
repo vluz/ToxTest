@@ -1,16 +1,15 @@
 # Toxic Comment Test
-## Python script to train TF model and a     
-streamlit app to use the model.
+## Python script to train TF model and a streamlit app to use the model.
 
 Data is from kaggle, the *Toxic Comment Classification Challenge*
 <br>
 https://www.kaggle.com/competitions/jigsaw-toxic-comment-classification-challenge/
 <br>
-Please downlad the data from this link and put `train.csv` into the `data` dir.
+Please downlad the data from this link and put `train.csv` into the `data` dir:
 <br>
 https://www.kaggle.com/competitions/jigsaw-toxic-comment-classification-challenge/data?select=train.csv.zip
 
-To use pretrained model, please donload it from HuggingFace here:
+To use pretrained model, please donload it from HuggingFace Put `toxmodel.keras` into the `model` dir:
 <br>
 https://huggingface.co/
 
