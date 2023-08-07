@@ -32,7 +32,7 @@ model.add(Dense(6, activation="sigmoid"))
 model.compile(loss="BinaryCrossentropy", optimizer="Adam")
 model.summary()
 print("\nTraining...")
-model.fit(train, epochs=9, validation_data=val)
+model.fit(train, epochs=20, validation_data=val)
 print("\nSaving...")
 pickle.dump({'config': vectorizer.get_config(),
              'weights': vectorizer.get_weights()}
