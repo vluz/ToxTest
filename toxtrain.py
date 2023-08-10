@@ -5,8 +5,10 @@ import tensorflow as tf
 from tensorflow.keras.layers import TextVectorization
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dropout, Bidirectional, Dense, Embedding
+from tensorflow.keras import mixed_precision
 
 
+mixed_precision.set_global_policy('mixed_float16')
 MAX_FEATURES = 200000
 df = pd.read_csv(os.path.join("data", "train.csv"))
 print("\n\nData loaded.\n")
@@ -20,7 +22,7 @@ dataset = dataset.cache()
 dataset = dataset.shuffle(160000)
 dataset = dataset.batch(16)
 dataset = dataset.prefetch(8)
-train = dataset.take(int(len(dataset)*.8))
+train = dataset.take(int(len(dataset)))
 val = dataset.skip(int(len(dataset)*.8)).take(int(len(dataset)*.2))
 model = Sequential()
 model.add(Embedding(MAX_FEATURES+1, 32))
@@ -30,9 +32,10 @@ model.add(Dense(256, activation="relu"))
 model.add(Dense(128, activation="relu"))
 model.add(Dense(6, activation="sigmoid"))
 model.compile(loss="BinaryCrossentropy", optimizer="Adam")
+print("\nModel:")
 model.summary()
 print("\nTraining...")
-model.fit(train, epochs=20, validation_data=val)
+model.fit(train, epochs=30, validation_data=val)
 print("\nSaving...")
 pickle.dump({'config': vectorizer.get_config(),
              'weights': vectorizer.get_weights()}
