@@ -15,32 +15,27 @@ def load_model():
 def load_vectorizer():
     from_disk = pickle.load(open(os.path.join("model", "vectorizer.pkl"), "rb"))
     new_v = TextVectorization.from_config(from_disk['config'])
-    new_v.adapt(tf.data.Dataset.from_tensor_slices(["xyz"])) # Keras bug
+    new_v.adapt(tf.data.Dataset.from_tensor_slices(["xyz"])) # fix for Keras bug
     new_v.set_weights(from_disk['weights'])
     return new_v
-
-
-@st.cache_resource
-def load_vocab():
-    vocab = {}
-    with open('vocab.txt', 'r') as f:
-        for line in f:
-            token, index = line.strip().split('\t')
-            vocab[token] = int(index)
 
 
 st.title("Toxic Comment Test")
 st.divider()
 model = load_model()
 vectorizer = load_vectorizer()
-input_text = st.text_area("Comment:", "I love you man, but fuck you!", height=150)
+default_prompt = "i love you man, but fuck you!"
+input_text = st.text_area("Comment:", default_prompt, height=150).lower()
 if st.button("Test"):
+    if not input_text:
+        st.write("⚠ Warning: Empty prompt.")
+    elif len(input_text) < 15:
+        st.write("⚠ Warning: Model is far less accurate with a small prompt.")
+    if input_text == default_prompt:
+        st.write("Expected results from default prompt are positive for 0 and 2")
     with st.spinner("Testing..."):
         inputv = vectorizer([input_text])
         output = model.predict(inputv)
         res = (output > 0.5)
     st.write(["toxic","severe toxic","obscene","threat","insult","identity hate"], res)
     st.write(output)
-    print(output)
-
-
