@@ -54,3 +54,9 @@ venv\Scripts\deactivate
 ```
 
 <hr>
+
+The helper script `dataclean.py` provides text cleaning for original data
+
+The helper script `renderwordcloud.py` renders wordclouds for both the data as a whole, and toxic comments
+
+<hr>
