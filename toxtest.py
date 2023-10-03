@@ -5,6 +5,15 @@ import tensorflow as tf
 from tensorflow.keras.layers import TextVectorization
 
 
+def clean_text(text):
+    text = re.sub(r'<[^>]+>', '', text)
+    text = re.sub(r'http\S+|www\S+|https\S+', '', text)
+    text = re.sub(r'[^a-zA-Z\'\s]', ' ', text)
+    text = re.sub(r'(\s)([iI][eE]|[eE][gG])(\s)', r' \2 ', text)
+    text = " ".join(text.split())
+    return text.lower()
+
+
 @st.cache_resource
 def load_model():
     model = tf.keras.models.load_model(os.path.join("model", "toxmodel.keras"))
@@ -34,7 +43,8 @@ if st.button("Test"):
     if input_text == default_prompt:
         st.write("Expected results from default prompt are positive for 0 and 2")
     with st.spinner("Testing..."):
-        inputv = vectorizer([input_text])
+        clean_input_text = clean_text(input_text)
+        inputv = vectorizer([clean_input_text])
         output = model.predict(inputv)
         res = (output > 0.5)
     st.write(["toxic","severe toxic","obscene","threat","insult","identity hate"], res)
